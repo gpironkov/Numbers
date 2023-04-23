@@ -1,0 +1,17 @@
+﻿div {
+    margin: 20px 0px 20px 0px;
+}
+
+body {
+    margin: 0 auto;
+    width: 80%;
+}
+
+label {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background-color: #dad7d7;
+    padding: 10px 10px;
+    line-height: 10px;
+}

@@ -1,0 +1,26 @@
+﻿@model NumberModel
+@{
+    ViewData["Title"] = "Numbers Task";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+<body>
+    <h1>Header</h1>
+    <h2>Subheader</h2>
+    <div>
+        <a class="btn btn-outline-primary" asp-controller="Home" asp-action="ClearNumbers">Clear Numbers</a>
+        <a class="btn btn-outline-primary" asp-controller="Home" asp-action="AddNumber">Add Number</a>
+        <a class="btn btn-outline-primary" asp-controller="Home" asp-action="SumNumbers">Sum Numbers</a>
+    </div>
+
+    <div>
+        @foreach (var num in Model.NumbersList)
+        {
+            <label>@num</label>
+        }
+        <h3>Count: @Model.Counter</h3>
+        <h3>Sum: @Model.Sum</h3>
+    </div>
+</body>
