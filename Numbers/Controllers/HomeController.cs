@@ -40,9 +40,9 @@ namespace MyWebApp.Controllers
             numbersList.Add(number);
             var numbers = JsonConvert.SerializeObject(numbersList);
 
-            HttpContext.Session.SetString(NumbersKey, numbers);
+            _contextAccessor.HttpContext.Session.SetString(NumbersKey, numbers);
 
-            var count = HttpContext.Session.GetInt32(CountKey) ?? 0;
+            var count = _contextAccessor.HttpContext.Session.GetInt32(CountKey) ?? 0;
             _contextAccessor.HttpContext.Session.SetInt32(CountKey, ++count);
 
             return RedirectToAction("Index");
@@ -60,16 +60,16 @@ namespace MyWebApp.Controllers
 
         public IActionResult ClearNumbers()
         {
-            HttpContext.Session.Remove(NumbersKey);
-            HttpContext.Session.Remove(CountKey);
-            HttpContext.Session.Remove(SumKey);
+            _contextAccessor.HttpContext.Session.Remove(NumbersKey);
+            _contextAccessor.HttpContext.Session.Remove(CountKey);
+            _contextAccessor.HttpContext.Session.Remove(SumKey);
 
             return RedirectToAction("Index");
         }
 
-        private List<int> GetNumbersToList()
+        private List<int>? GetNumbersToList()
         {
-            var numbersJson = HttpContext.Session.GetString(NumbersKey);
+            var numbersJson = _contextAccessor.HttpContext.Session.GetString(NumbersKey);
             var numbersList = numbersJson != null ? JsonConvert.DeserializeObject<List<int>>(numbersJson) : new List<int>();
 
             return numbersList;
